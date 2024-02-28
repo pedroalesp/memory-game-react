@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import Board from './components/Board'
+import { normalizeGameData } from './utils/normalizer'
+import { duplicateCards } from './utils/duplicateCards'
 
 function App() {
-  const [animals, setAnimals] = useState([])
+  const [animalCards, setAnimalCards] = useState([])
 
   useEffect(() => {
     const getImages = async () => {
@@ -13,34 +15,40 @@ function App() {
         if (!response.ok) {
           throw new Error('Error de red')
         }
+
         const data = await response.json()
 
-        const duplicatedImages = [...data.entries, ...data.entries]
+        const duplicatedCards = duplicateCards(normalizeGameData(data.entries))
 
-        const shuffledImages = shuffleArray(duplicatedImages)
-        setAnimals(shuffledImages)
+        const shuffledImages = shuffleArray(duplicatedCards)
+
+        setAnimalCards(shuffledImages)
       } catch (error) {
         console.log(error)
       }
     }
 
     const shuffleArray = (array) => {
-      const shuffled = [...array]
-      for (let i = shuffled.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1))
-        ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
-      }
-      return shuffled
+      return array.sort(function () {
+        return Math.random() - 0.5
+      })
+      // const shuffled = [...array]
+      // for (let i = shuffled.length - 1; i > 0; i--) {
+      //   const randomIndex = Math.floor(Math.random() * (i + 1))
+
+      //   // Intercambia los elementos en las posiciones i y randomIndex
+      //   ;[shuffled[i], shuffled[randomIndex]] = [
+      //     shuffled[randomIndex],
+      //     shuffled[i],
+      //   ]
+      // }
+      // return shuffled
     }
 
     getImages()
   }, [])
 
-  return (
-    <>
-      <Board animals={animals} />
-    </>
-  )
+  return <Board animalCards={animalCards} />
 }
 
 export default App

@@ -1,0 +1,8 @@
+.card {
+  padding: 0;
+  cursor: pointer;
+}
+
+.flipped {
+  opacity: 0.2;
+}
