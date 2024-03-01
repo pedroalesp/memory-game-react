@@ -6,7 +6,7 @@ A demo of the solution can be accessed [here](https://modyomemorygame.netlify.ap
 
 ## Overview
 
-The implemented solution has been built using _React + Vite_. All files are located in the **src** folder.
+The implemented solution has been built using _React + Vite_. All files are located in the **src** folder and the project was deloyed on Netlify.
 
 ## Solution architecture
 
