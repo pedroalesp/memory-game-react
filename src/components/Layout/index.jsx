@@ -3,12 +3,14 @@ import { useCallback, useEffect, useState } from 'react'
 import Board from '../Board'
 import Modal from '../Modal'
 import Score from '../Score'
+import Footer from '../Footer'
 
 import { cardsMatch, shuffleCards } from '../../utils'
+import { DELAY, SELECTED_LIMIT } from '../../consts'
 
 import PropTypes from 'prop-types'
 
-const Layout = ({ animalCards, setAnimalCards }) => {
+const Layout = ({ animalCards, setAnimalCards, pairs, setPairs }) => {
   const [selectedCards, setSelectedCards] = useState([])
   const [matchedPairs, setMatchedPairs] = useState([])
   const [failures, setFailures] = useState(0)
@@ -31,11 +33,12 @@ const Layout = ({ animalCards, setAnimalCards }) => {
   )
 
   useEffect(() => {
-    if (selectedCards.length === 2) {
-      setTimeout(() => checkForMatch(selectedCards), 1300)
+    if (selectedCards.length === SELECTED_LIMIT) {
+      setTimeout(() => checkForMatch(selectedCards), DELAY)
     }
 
     if (matchedPairs.length && matchedPairs.length === animalCards.length) {
+      setOpenModal(true)
       setGameCompleted(true)
     }
   }, [animalCards.length, checkForMatch, matchedPairs, selectedCards])
@@ -48,6 +51,8 @@ const Layout = ({ animalCards, setAnimalCards }) => {
         setGameCompleted={setGameCompleted}
         startGame={startGame}
         resetScore={resetScore}
+        pairs={pairs}
+        setPairs={setPairs}
       />
     )
 
@@ -74,6 +79,7 @@ const Layout = ({ animalCards, setAnimalCards }) => {
         matchedPairs={matchedPairs}
       />
       {renderModal()}
+      <Footer />
     </div>
   )
 }
@@ -83,4 +89,6 @@ export default Layout
 Layout.propTypes = {
   animalCards: PropTypes.array,
   setAnimalCards: PropTypes.func,
+  pairs: PropTypes.string,
+  setPairs: PropTypes.func,
 }

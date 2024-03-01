@@ -3,22 +3,19 @@ import './App.css'
 import Layout from './components/Layout'
 import { normalizeGameData } from './utils/normalizer'
 import { duplicateCards } from './utils'
+import { getImagesService } from './lib/service'
+import { PAIRS } from './consts'
 
 function App() {
   const [animalCards, setAnimalCards] = useState([])
+  const [pairs, setPairs] = useState(PAIRS.five)
 
   useEffect(() => {
     const getImages = async () => {
       try {
-        const response = await fetch(import.meta.env.VITE_IMAGES_URL)
+        const response = await getImagesService(pairs)
 
-        if (!response.ok) {
-          throw new Error('Ha ocurrido un problema de conexión 🚧')
-        }
-
-        const data = await response.json()
-
-        const duplicatedCards = duplicateCards(normalizeGameData(data.entries))
+        const duplicatedCards = duplicateCards(normalizeGameData(response))
 
         setAnimalCards(duplicatedCards)
       } catch (error) {
@@ -27,9 +24,18 @@ function App() {
     }
 
     getImages()
-  }, [])
+  }, [pairs])
 
-  return <Layout animalCards={animalCards} setAnimalCards={setAnimalCards} />
+  return (
+    <>
+      <Layout
+        animalCards={animalCards}
+        setAnimalCards={setAnimalCards}
+        pairs={pairs}
+        setPairs={setPairs}
+      />
+    </>
+  )
 }
 
 export default App

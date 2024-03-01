@@ -1,15 +1,44 @@
+import { useEffect, useState } from 'react'
+import { SCORE_DELAY } from '../../consts'
 import PropTypes from 'prop-types'
+import './styles.css'
 
 const Score = ({ successes, failures }) => {
+  const [successesUpdate, setSuccessesUpdate] = useState(false)
+  const [failuresUpdate, setFailuresUpdate] = useState(false)
+
+  const updateStateWithTimeout = (setState) => {
+    setState(true)
+    setTimeout(() => setState(false), SCORE_DELAY)
+  }
+
+  useEffect(() => {
+    updateStateWithTimeout(setFailuresUpdate)
+  }, [failures])
+
+  useEffect(() => {
+    updateStateWithTimeout(setSuccessesUpdate)
+  }, [successes])
+
   return (
     <>
-      <h3>Marcador de {window.localStorage.getItem('username')}</h3>
+      <h3 className="text-2xl md:text-3xl mt-5">
+        Marcador de {window.localStorage.getItem('username')}
+      </h3>
       <div className="flex justify-center space-x-8 m-6">
-        <div className="flex flex-col border-2 w-full rounded-md p-1 md:p-2 bg-slate-100 text-emerald-600 text-lg md:text-2xl">
+        <div
+          className={`container__score ${
+            successesUpdate && 'container__score--success'
+          } `}
+        >
           <h3>Aciertos:</h3>
           <span>{successes}</span>
         </div>
-        <div className="flex flex-col border-2 w-full rounded-md p-1 md:p-2 bg-slate-100  text-emerald-600 text-lg md:text-2xl">
+        <div
+          className={`container__score ${
+            failuresUpdate && 'container__score--fail'
+          } `}
+        >
           <h3>Fallos:</h3>
           <span>{failures}</span>
         </div>

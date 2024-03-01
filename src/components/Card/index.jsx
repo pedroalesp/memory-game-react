@@ -1,3 +1,4 @@
+import { SELECTED_LIMIT } from '../../consts'
 import PropTypes from 'prop-types'
 import './styles.css'
 
@@ -7,7 +8,7 @@ const Card = ({ cardData, setSelectedCards, selectedCards, matchedPairs }) => {
   const isFlipped = selectedCards.includes(id) || matchedPairs.includes(id)
 
   const handleOnCLick = () => {
-    if (selectedCards.length === 2) {
+    if (selectedCards.length === SELECTED_LIMIT) {
       return null
     }
 
@@ -20,7 +21,7 @@ const Card = ({ cardData, setSelectedCards, selectedCards, matchedPairs }) => {
     if (isFlipped) {
       return (
         <img
-          className="size-20 object-cover rounded-md"
+          className=" size-20 object-cover rounded-md"
           src={url}
           alt={title}
         />

@@ -22,8 +22,9 @@ const Header = ({ gameCompleted }) => {
         <h1 className="text-2xl md:text-3xl mb-4">
           Bienvenido al juego de memoria de Modyo ✨
         </h1>
-        <h3 className="text-xl md:text-2xl">
-          Antes de comenzar a jugar escribe tu nombre
+        <h3 className="text-xl md:text-2xl md:px-20">
+          Antes de comenzar a jugar escribe tu nombre y selecciona con cuantos
+          pares de cartas quieres jugar
         </h3>
       </>
     )
