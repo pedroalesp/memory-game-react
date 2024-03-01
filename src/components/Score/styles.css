@@ -1,0 +1,30 @@
+.container__score {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #f1f5f9;
+  border-radius: 8px;
+  padding: 4px;
+  color: #059669;
+  background: #f1f5f9;
+  font-size: 18px;
+  width: 100%;
+  font-weight: 500;
+  transition: color 0.1s, background 0.1s;
+}
+
+.container__score--success {
+  color: #f1f5f9;
+  background: #1bd79b;
+}
+
+.container__score--fail {
+  color: #f1f5f9;
+  background: #d52c2c;
+}
+
+@media (min-width: 768px) {
+  .container__score {
+    padding: 8px;
+    font-size: 24px;
+  }
+}

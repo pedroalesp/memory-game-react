@@ -27,12 +27,14 @@ function App() {
   }, [pairs])
 
   return (
-    <Layout
-      animalCards={animalCards}
-      setAnimalCards={setAnimalCards}
-      pairs={pairs}
-      setPairs={setPairs}
-    />
+    <>
+      <Layout
+        animalCards={animalCards}
+        setAnimalCards={setAnimalCards}
+        pairs={pairs}
+        setPairs={setPairs}
+      />
+    </>
   )
 }
 

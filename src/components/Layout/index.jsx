@@ -3,8 +3,10 @@ import { useCallback, useEffect, useState } from 'react'
 import Board from '../Board'
 import Modal from '../Modal'
 import Score from '../Score'
+import Footer from '../Footer'
 
 import { cardsMatch, shuffleCards } from '../../utils'
+import { DELAY, SELECTED_LIMIT } from '../../consts'
 
 import PropTypes from 'prop-types'
 
@@ -31,8 +33,8 @@ const Layout = ({ animalCards, setAnimalCards, pairs, setPairs }) => {
   )
 
   useEffect(() => {
-    if (selectedCards.length === 2) {
-      setTimeout(() => checkForMatch(selectedCards), 1300)
+    if (selectedCards.length === SELECTED_LIMIT) {
+      setTimeout(() => checkForMatch(selectedCards), DELAY)
     }
 
     if (matchedPairs.length && matchedPairs.length === animalCards.length) {
@@ -77,6 +79,7 @@ const Layout = ({ animalCards, setAnimalCards, pairs, setPairs }) => {
         matchedPairs={matchedPairs}
       />
       {renderModal()}
+      <Footer />
     </div>
   )
 }
