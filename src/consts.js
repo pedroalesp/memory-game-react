@@ -1,0 +1,6 @@
+export const PAIRS = {
+  five: '5',
+  ten: '10',
+  fifteen: '15',
+  twenty: '20',
+}

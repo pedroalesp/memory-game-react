@@ -8,7 +8,7 @@ import { cardsMatch, shuffleCards } from '../../utils'
 
 import PropTypes from 'prop-types'
 
-const Layout = ({ animalCards, setAnimalCards }) => {
+const Layout = ({ animalCards, setAnimalCards, pairs, setPairs }) => {
   const [selectedCards, setSelectedCards] = useState([])
   const [matchedPairs, setMatchedPairs] = useState([])
   const [failures, setFailures] = useState(0)
@@ -36,6 +36,7 @@ const Layout = ({ animalCards, setAnimalCards }) => {
     }
 
     if (matchedPairs.length && matchedPairs.length === animalCards.length) {
+      setOpenModal(true)
       setGameCompleted(true)
     }
   }, [animalCards.length, checkForMatch, matchedPairs, selectedCards])
@@ -48,6 +49,8 @@ const Layout = ({ animalCards, setAnimalCards }) => {
         setGameCompleted={setGameCompleted}
         startGame={startGame}
         resetScore={resetScore}
+        pairs={pairs}
+        setPairs={setPairs}
       />
     )
 
@@ -83,4 +86,6 @@ export default Layout
 Layout.propTypes = {
   animalCards: PropTypes.array,
   setAnimalCards: PropTypes.func,
+  pairs: PropTypes.string,
+  setPairs: PropTypes.func,
 }

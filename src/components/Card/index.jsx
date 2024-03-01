@@ -20,7 +20,7 @@ const Card = ({ cardData, setSelectedCards, selectedCards, matchedPairs }) => {
     if (isFlipped) {
       return (
         <img
-          className="size-20 object-cover rounded-md"
+          className=" size-20 object-cover rounded-md"
           src={url}
           alt={title}
         />

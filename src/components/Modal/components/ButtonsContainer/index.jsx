@@ -7,7 +7,7 @@ const ButtonsContainer = ({ toggleModal, savedUsername, setWriteName }) => {
   const renderBackButton = () =>
     savedUsername && (
       <button className="common button__back" onClick={handleBackClick}>
-        Cambiar nombre
+        Configuración
       </button>
     )
 
