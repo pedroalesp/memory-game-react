@@ -20,7 +20,7 @@ const RadioGroup = ({ pairs, setPairs }) => {
           name="option"
           hidden="hidden"
           onChange={handleRadioChange}
-          value="5"
+          value={PAIRS.five}
         />
         5
       </label>
@@ -34,7 +34,7 @@ const RadioGroup = ({ pairs, setPairs }) => {
           name="option"
           hidden="hidden"
           onChange={handleRadioChange}
-          value="10"
+          value={PAIRS.ten}
         />
         10
       </label>
@@ -48,7 +48,7 @@ const RadioGroup = ({ pairs, setPairs }) => {
           hidden="hidden"
           name="option"
           onChange={handleRadioChange}
-          value="15"
+          value={PAIRS.fifteen}
         />
         15
       </label>
@@ -62,7 +62,7 @@ const RadioGroup = ({ pairs, setPairs }) => {
           name="option"
           hidden="hidden"
           onChange={handleRadioChange}
-          value="20"
+          value={PAIRS.twenty}
         />
         20
       </label>
