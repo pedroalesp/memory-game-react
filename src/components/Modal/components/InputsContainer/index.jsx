@@ -1,4 +1,4 @@
-import InputName from '../InputName'
+import InputName from './InputName'
 import RadioGroup from './RadioGroup'
 import PropTypes from 'prop-types'
 
