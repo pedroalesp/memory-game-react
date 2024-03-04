@@ -4,6 +4,7 @@ const Footer = () => (
     <img
       className="w-20"
       src="https://cloud.modyocdn.com/uploads/3e33d46c-1555-4f58-a218-6f2b5d80b4cd/original/modyo.svg"
+      alt="Modyo Logo"
     />
     <span>🙌</span>
   </div>
